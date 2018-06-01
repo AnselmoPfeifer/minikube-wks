@@ -16,7 +16,7 @@
       get_url:
         url: 'https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64'
         sha256sum: '7c03650d33e029f1dbf810d27dc1fc197ad9b889f645a4d5c353bb1c46d3ff2a'
-        dest: /usr/bin/minikube
+        dest: /usr/local/bin/minikube
         mode: 0755
         owner: ubuntu
         group: ubuntu
@@ -25,7 +25,7 @@
       get_url:
         url: "https://storage.googleapis.com/kubernetes-release/release/v1.10.3/bin/linux/amd64/kubectl"
         sha256sum: '62893257193f9e848f383055993e63166ab67bf872c85e896ce9b9167ba85403'
-        dest: /usr/bin/kubectl
+        dest: /usr/local/bin/kubectl
         mode: 0755
         owner: ubuntu
         group: ubuntu
@@ -33,7 +33,7 @@
 
     - name: 'copy minikube envs'
       copy:
-        src: minikube.sh
+        src: ../scripts/minikube.sh
         dest: /etc/profile.d/minikube.sh
         owner: ubuntu
         group: ubuntu

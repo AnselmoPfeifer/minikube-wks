@@ -9,6 +9,7 @@
   "builders": [
       {
         "type": "amazon-ebs",
+        "tags": {"Name": "minikube-wks"},
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "{{user `destination_regions`}}",
@@ -18,7 +19,7 @@
         "vpc_id": "{{user `aws_vpc_id`}}",
         "subnet_id": "{{user `aws_subnet_id`}}",
         "ssh_username": "ubuntu",
-        "ami_name": "Minikube-Image-{{timestamp}}"
+        "ami_name": "minikube-wks-{{timestamp}}"
       }
   ],
 
@@ -27,7 +28,7 @@
     {
       "type": "file",
       "source": "ansible/hosts",
-      "destination": "hosts"
+      "destination": "~/hosts"
     },
 
     {
@@ -39,9 +40,8 @@
     {
       "type": "shell",
       "inline": [
-        "cd /tmp/",
-        "chmod +x install.sh",
-        "./install.sh"
+        "cd /tmp/ && chmod +x install.sh && ./install.sh",
+        "sudo mv ~/hosts /etc/ansible/hosts"
       ]
     },
 
@@ -61,9 +61,7 @@
       "inline": [
         "set -x",
         "minikube config set WantReportErrorPrompt false",
-        "minikube version",
-        "minikube start --vm-driver=none",
-        "kubectl version"
+        "minikube version"
       ]
     }
   ]

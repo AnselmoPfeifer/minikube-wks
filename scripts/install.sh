@@ -11,4 +11,3 @@ sudo apt-get update
 sudo apt-get install ansible --yes
 sudo apt-get install docker-ce --yes
 sudo apt-get autoremove --yes
-sudo mv ~/hosts /etc/ansible/hosts

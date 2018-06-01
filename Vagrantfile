@@ -16,8 +16,9 @@ Vagrant.configure('2') do |config|
     mkdir -p /home/ubuntu/.ssh
     chown -R ubuntu:ubuntu /home/ubuntu
 
-    apt-get purge ansible --yes
-    apt-get autoremove --yes
+    cd /vagrant/scripts/
+    chmod +x install.sh && ./install.sh
+    cp /vagrant/ansible/hosts /etc/ansible/hosts
   SHELL
 
   config.vm.provision :ansible_local do |ansible|
